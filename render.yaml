@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: medilingua-telemedicine
+    runtime: node
+    plan: free
+    buildCommand: "npm --prefix frontend install && npm --prefix frontend run build && npm --prefix backend install"
+    startCommand: "node backend/server.js"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
