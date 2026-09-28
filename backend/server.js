@@ -607,11 +607,16 @@ if (frontendDistPath) {
 }
 
 const HOST = '0.0.0.0';
-app.listen(PORT, HOST, () => {
-  console.log(`MediLingua Telehealth server running on http://${HOST}:${PORT}`);
-  console.log(`Pre-seeded demo accounts ready:`);
-  console.log(` - Patient: patient_demo / demo123 (Priya Sharma, MRN-TN-8821, Tamil)`);
-  console.log(` - Doctor: doctor_demo / demo123 (Dr. Rajesh Sundaram, MCI-TN-48201, English)`);
-  console.log(` - Interpreter: interpreter_demo / demo123 (Ananya Menon, CMI #9042, Malayalam/Tamil)`);
-  console.log(` - Admin: admin_demo / demo123 (Hospital Ops Admin, Hindi)`);
-});
+if (require.main === module) {
+  app.listen(PORT, HOST, () => {
+    console.log(`MediLingua Telehealth server running on http://${HOST}:${PORT}`);
+    console.log(`Pre-seeded demo accounts ready:`);
+    console.log(` - Patient: patient_demo / demo123 (Priya Sharma, MRN-TN-8821, Tamil)`);
+    console.log(` - Doctor: doctor_demo / demo123 (Dr. Rajesh Sundaram, MCI-TN-48201, English)`);
+    console.log(` - Interpreter: interpreter_demo / demo123 (Ananya Menon, CMI #9042, Malayalam/Tamil)`);
+    console.log(` - Admin: admin_demo / demo123 (Hospital Ops Admin, Hindi)`);
+  });
+}
+
+module.exports = app;
+
