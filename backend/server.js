@@ -438,8 +438,27 @@ function auth(req, res, next) {
   }
 }
 
-// Health check
-app.get('/api/health', (req, res) => res.json({ ok: true, service: 'MediLingua Telemedicine Enterprise API', version: '2.5' }));
+// Health check & System Diagnostics
+app.get('/api/health', (req, res) => {
+  const memUsage = process.memoryUsage();
+  res.json({
+    ok: true,
+    service: 'MediLingua Telemedicine Enterprise API',
+    version: '2.5',
+    uptimeSeconds: Math.floor(process.uptime()),
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'production',
+    diagnostics: {
+      activeDoctors: realDoctors.length,
+      registeredUsers: users.length,
+      appointments: demoData.appointments.length,
+      memory: {
+        rssMb: Math.round(memUsage.rss / 1024 / 1024),
+        heapUsedMb: Math.round(memUsage.heapUsed / 1024 / 1024)
+      }
+    }
+  });
+});
 
 // Send OTP Demo
 app.post('/api/auth/send-otp', (req, res) => {
@@ -608,7 +627,7 @@ if (frontendDistPath) {
 
 const HOST = '0.0.0.0';
 if (require.main === module) {
-  app.listen(PORT, HOST, () => {
+  const server = app.listen(PORT, HOST, () => {
     console.log(`MediLingua Telehealth server running on http://${HOST}:${PORT}`);
     console.log(`Pre-seeded demo accounts ready:`);
     console.log(` - Patient: patient_demo / demo123 (Priya Sharma, MRN-TN-8821, Tamil)`);
@@ -616,6 +635,17 @@ if (require.main === module) {
     console.log(` - Interpreter: interpreter_demo / demo123 (Ananya Menon, CMI #9042, Malayalam/Tamil)`);
     console.log(` - Admin: admin_demo / demo123 (Hospital Ops Admin, Hindi)`);
   });
+
+  const handleShutdown = (signal) => {
+    console.log(`[MediLingua] Received ${signal}. Initiating graceful shutdown...`);
+    server.close(() => {
+      console.log('[MediLingua] HTTP server closed gracefully.');
+      process.exit(0);
+    });
+  };
+
+  process.on('SIGTERM', () => handleShutdown('SIGTERM'));
+  process.on('SIGINT', () => handleShutdown('SIGINT'));
 }
 
 module.exports = app;
