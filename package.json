@@ -8,7 +8,8 @@
     "build": "npm --prefix frontend run build",
     "start": "node backend/server.js",
     "dev:backend": "npm --prefix backend run dev",
-    "dev:frontend": "npm --prefix frontend run dev"
+    "dev:frontend": "npm --prefix frontend run dev",
+    "test": "npm --prefix backend test"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -24,5 +25,5 @@
     "express"
   ],
   "author": "MediLingua Team",
-  "license": "ISC"
+  "license": "MIT"
 }
