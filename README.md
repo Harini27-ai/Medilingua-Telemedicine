@@ -1,6 +1,22 @@
 # MediLingua – Multilingual Telemedicine Access Platform
 
+[![MediLingua CI](https://github.com/Harini27-ai/Medilingua-Telemedicine/actions/workflows/ci.yml/badge.svg)](https://github.com/Harini27-ai/Medilingua-Telemedicine/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node.js Version](https://img.shields.io/badge/Node.js-18%20%7C%2020%20%7C%2024-green.svg)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-61dafb.svg)](https://react.dev/)
+[![Express](https://img.shields.io/badge/Backend-Express.js-black.svg)](https://expressjs.com/)
+
 A production-grade full-stack telemedicine platform designed to eliminate language barriers in healthcare across India by uniting patients, specialist doctors, and certified medical interpreters through live speech translation, HD virtual consults, and localized medical records.
+
+---
+
+## 📑 Project Navigation & Documentation
+
+- 🏛️ [System Architecture & Diagrams](docs/ARCHITECTURE.md)
+- 🔌 [REST API Reference & Schemas](docs/API.md)
+- 🤝 [Contributing Guidelines](CONTRIBUTING.md)
+- 📜 [Code of Conduct](CODE_OF_CONDUCT.md)
+- ⚖️ [MIT License](LICENSE)
 
 ---
 
@@ -19,8 +35,8 @@ A production-grade full-stack telemedicine platform designed to eliminate langua
 
 ### 2. Soothing, Subtle Healthcare UI/UX Palette
 - **Subtle Medical Tint (`--bg-canvas: #f0f4f9`)**: Soft, serene medical canvas background that reduces ocular fatigue, paired with crisp white cards (`#ffffff`), subtle borders (`#dbe3ed`), and deep navy headers (`#0a1120`).
-- **Clinical Precision**: Replaces generic AI templates with authoritative hospital-grade typography, patient Medical Record Numbers (MRN), ICD-10 diagnostic codes (`K21.9`), and doctor MCI registration badges.
-- **Left-Side Navigation Menus**: Menus are arranged vertically one by one on the left side in both the interactive demo console and the dashboard.
+- **Clinical Precision**: Replaces generic templates with authoritative hospital-grade typography, patient Medical Record Numbers (MRN), ICD-10 diagnostic codes (`K21.9`), and doctor MCI registration badges.
+- **Responsive Layout**: Designed for seamless accessibility across mobile devices, clinical tablets, and high-resolution hospital workstations.
 
 ### 3. Real Clinical Datasets Across India
 - **8 Specialist Doctors Across Premier Indian Institutes**:
@@ -60,15 +76,26 @@ A production-grade full-stack telemedicine platform designed to eliminate langua
 
 ## 🏃 Quick Start
 
-### 1. Backend Server
+### 1. Unified Dependency Installation
+```bash
+npm run install:all
+```
+
+### 2. Run Backend API Server
 ```bash
 cd backend
 npm install
-npm start
+npm run dev
 ```
 *API running at: `http://localhost:5000`*
 
-### 2. Frontend Application
+### 3. Run Backend Automated Test Suite
+```bash
+cd backend
+npm test
+```
+
+### 4. Run Frontend Client
 In a second terminal:
 ```bash
 cd frontend
